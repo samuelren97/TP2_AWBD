@@ -22,5 +22,10 @@
     "natation": "Natation",
     "repos": "Repos",
     "activite": "Activité",
-    "sauvegarder": "Sauvegarder"
+    "sauvegarder": "Sauvegarder",
+    "acceuil": "Acceuil",
+    "connexion": "Connexion",
+    "nom": "Nom",
+    "prenom": "Prénom",
+    "dateNaissance": "Date de naissance"
 }

@@ -22,5 +22,10 @@
     "natation": "Swimming",
     "repos": "Rest",
     "activite": "Activity",
-    "sauvegarder": "Save"
+    "sauvegarder": "Save",
+    "acceuil": "Index",
+    "connexion": "Login",
+    "nom": "Last name",
+    "prenom": "First name",
+    "dateNaissance": "Birth date"
 }
