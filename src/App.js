@@ -9,6 +9,7 @@ import {
 import { Container } from 'react-bootstrap';
 
 import Langages from './i18n/Langages.js'
+import PageAcceuil from './Pages/PageAcceuil.js';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Container>
         <Langages />
         <Routes>
-          
+          <Route path='/' element={<PageAcceuil />} />
+
           {/* Separateur */}
 
         </Routes>
