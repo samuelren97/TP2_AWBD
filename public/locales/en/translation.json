@@ -31,5 +31,10 @@
     "creationClient": "Create a new client",
     "ajouterClient": "Add a new client",
     "modifier": "Modify",
-    "supprimer": "Delete"
+    "supprimer": "Delete",
+    "non": "No",
+    "oui": "Yes",
+    "messageSuppression": "Are you sure you want to delete client #",
+    "messageErreurSuppression": "There was an error while trying to delete the client",
+    "messageConfirmationSuppression": "Client was deleted successfully"
 }

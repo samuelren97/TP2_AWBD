@@ -31,5 +31,10 @@
     "creationClient": "Création d'un client",
     "ajouterClient": "Ajouter un client",
     "modifier": "Modifier",
-    "supprimer": "Supprimer"
+    "supprimer": "Supprimer",
+    "oui": "Oui",
+    "non": "Non",
+    "messageSuppression": "Voulez vous supprimer le client #",
+    "messageErreurSuppression": "Il y a eu une erreur lors de la suppression du client",
+    "messageConfirmationSuppression": "Le client a été supprimé avec succès"
 }
