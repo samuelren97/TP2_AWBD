@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
 
 function ItemClient({ client }) {
     const { t } = useTranslation();
@@ -17,13 +16,14 @@ function ItemClient({ client }) {
                     <Card.Text className='mt-3 text-end'>
                         <Button 
                             variant='primary'
-                            onClick={()=> <Navigate to={`/modification/${client.clientId}`} />}
+                            onClick={()=> window.location.href=`/modificationClient/${client.clientId}`}
                         >
                             {t('modifier')}
                         </Button>
                         <Button
                             variant='danger'
                             className='ms-3'
+                            onClick={() => window.location.href=`/suppressionClient/${client.clientId}`}
                         >
                             {t('supprimer')}
                         </Button>
