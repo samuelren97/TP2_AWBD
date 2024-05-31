@@ -27,5 +27,7 @@
     "connexion": "Login",
     "nom": "Last name",
     "prenom": "First name",
-    "dateNaissance": "Birth date"
+    "dateNaissance": "Birth date",
+    "creationClient": "Create a new client",
+    "ajouterClient": "Add a new client"
 }

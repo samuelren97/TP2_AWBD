@@ -1,13 +1,9 @@
-// 	L’utilisateur doit pouvoir entrer le nom, le prénom et la date de naissance d’un nouveau client.
-// 	Lorsque l’utilisateur soumet les informations, le client doit être ajouté à la liste.
-//  	
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
-import { Table } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 export function PageCreationClient() {
@@ -17,7 +13,7 @@ export function PageCreationClient() {
     const { t } = useTranslation();
 
     const ajouterClient = async () => {
-        const response = await fetch('/api/Clients', { // Change the URL to the correct API URL
+        const response = await fetch('/api/Clients', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,22 +39,25 @@ export function PageCreationClient() {
 
     return (
         <Container>
+            <h1>{t('creationClient')}</h1>
+            <hr />
+            <h2>{t('ajouterClient')}</h2>
             <Row>
                 <Col>
                     <Form>
                         <Form.Group>
-                            <Form.Label>{t('nom')}</Form.Label>
-                            <Form.Control type="text" value={nom} onChange={(e) => setNom(e.target.value)} />
+                            <Form.Label  className="mb-3">{t('nom')}</Form.Label>
+                            <Form.Control  type="text" value={nom} onChange={(e) => setNom(e.target.value)} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>{t('prenom')}</Form.Label>
+                            <Form.Label className="responsive-label">{t('prenom')}</Form.Label>
                             <Form.Control type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>{t('dateNaissance')}</Form.Label>
+                            <Form.Label className="responsive-label">{t('dateNaissance')}</Form.Label>
                             <Form.Control type="date" value={dateNaissance} onChange={(e) => setDateNaissance(e.target.value)} />
                         </Form.Group>
-                        <Button onClick={ajouterClient}>{t('ajouter')}</Button>
+                        <Button className='mt-3' onClick={ajouterClient}>{t('ajouter')}</Button>
                     </Form>
                 </Col>
                 

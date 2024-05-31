@@ -27,5 +27,7 @@
     "connexion": "Connexion",
     "nom": "Nom",
     "prenom": "Prénom",
-    "dateNaissance": "Date de naissance"
+    "dateNaissance": "Date de naissance",
+    "creationClient": "Création d'un client",
+    "ajouterClient": "Ajouter un client"
 }
