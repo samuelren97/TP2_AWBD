@@ -17,7 +17,7 @@ function ItemClient({ client }) {
                     <Card.Text className='mt-3 text-end'>
                         <Button 
                             variant='primary'
-                            onClick={()=> <Navigate to={`/modification/${client.clientId}`} />}
+                            onClick={()=> alert(client.clientId)}
                         >
                             {t('modifier')}
                         </Button>

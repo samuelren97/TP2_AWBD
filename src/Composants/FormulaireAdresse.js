@@ -3,7 +3,7 @@ import { Form, Container, Row, Col } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-export function FormulaireAdresse({ ajouterAdresse }) {
+export function FormulaireAdresse({ handleClick, nomBouton }) {
     const [numeroCivique, setNumeroCivique] = useState('');
     const [odonyme, setOdonyme] = useState('');
     const [typeVoie, setTypeVoie] = useState('');
@@ -14,7 +14,8 @@ export function FormulaireAdresse({ ajouterAdresse }) {
     const { t } = useTranslation();
 
     const ajouter = () => {
-        ajouterAdresse({
+        handleClick({
+            adresseId: null,
             numeroCivique: numeroCivique,
             odonyme: odonyme,
             typeVoie: typeVoie,
@@ -67,7 +68,7 @@ export function FormulaireAdresse({ ajouterAdresse }) {
                         <Form.Label className="mb-3">{t('pays')}</Form.Label>
                         <Form.Control type="text" value={pays} onChange={(e) => setPays(e.target.value)} />
                     </Form.Group>
-                    <Button className='mt-3' variant='success' onClick={ajouter}>{t('ajouter')}</Button>
+                    <Button className='mt-3' variant='success' onClick={ajouter}>{nomBouton}</Button>
                 </Col>
             </Row>
         </Container>

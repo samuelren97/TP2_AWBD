@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { Form, Container, Row, Col } from 'react-bootstrap';
+import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+
+import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
 
 export function PageModification() {
     const { id } = useParams();
@@ -43,6 +45,18 @@ export function PageModification() {
         console.log(response);
     }
 
+    const ajouterAdresse = async (adresse) => {
+        const response = await fetch(`/api/Clients/${id}/Adresses`, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(adresse)
+        });
+        console.log(response);
+    }
+
+
     return (
         <Container>
             <h1>{t('modificationClient')}</h1>
@@ -67,7 +81,7 @@ export function PageModification() {
                     <Button className='mt-3' variant='success' onClick={modifierClient}>{t('modifier')}</Button>
                 </Col>
             </Row>
-            <h2>{t('adresses')}</h2>
+            <FormulaireAdresse nomBouton={t('ajouter')} handleClick={ajouterAdresse}/>
         </Container>
     )
 }
