@@ -31,5 +31,16 @@
     "creationClient": "Création d'un client",
     "ajouterClient": "Ajouter un client",
     "modifier": "Modify",
-    "supprimer": "Delete"
+    "supprimer": "Delete",
+    "modificationClient": "Modification d'un client",
+    "modifierClient": "Modifier un client",
+    "adresses": "Adresses",
+    "ajouterAdresse": "Ajouter une adresse",
+    "numeroCivique": "Numéro civique",
+    "odonyme": "Odonyme",
+    "typeVoie": "Type de voie",
+    "codePostal": "Code postal",
+    "nomMunicipalite": "Nom de la municipalité",
+    "etat": "État",
+    "pays": "Pays"
 }

@@ -1,25 +1,39 @@
-import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
-import { Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { Form, Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-export function PageCreationClient() {
+export function PageModification() {
+    const { id } = useParams();
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [dateNaissance, setDateNaissance] = useState('');
     const { t } = useTranslation();
 
-    const ajouterClient = async () => {
-        const response = await fetch('/api/Clients', { 
-            method: 'POST',
+    useEffect(() => {
+        const chercherClient = async () => {
+            const response = await fetch(`/api/Clients/${id}`);
+            if(response.status === 404) {
+                <Navigate to="/404"/>
+            }
+            else {
+                const body = await response.json();
+                setNom(body.nom);
+                setPrenom(body.prenom);
+                setDateNaissance(body.dateNaissance);
+            }
+        }
+        chercherClient();
+    }, []);
+
+    const modifierClient = async () => {
+        const response = await fetch(`/api/Clients/${id}`, { 
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                clientId: null,
+                clientId: id,
                 nom: nom,
                 prenom: prenom,
                 dateNaissance: dateNaissance,
@@ -27,21 +41,13 @@ export function PageCreationClient() {
             })
         });
         console.log(response);
-
-        if (response.ok) {
-            setNom('');
-            setPrenom('');
-            setDateNaissance('');
-        } else {
-            console.error('Impossible d\'ajouter le client');
-        }
     }
 
     return (
         <Container>
-            <h1>{t('creationClient')}</h1>
+            <h1>{t('modificationClient')}</h1>
             <hr />
-            <h2>{t('ajouterClient')}</h2>
+            <h2>{t('modifierClient')}</h2>
             <Row>
                 <Col xs={12} md={6}> 
                     <Form.Group>
@@ -53,16 +59,15 @@ export function PageCreationClient() {
                         <Form.Control type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                     </Form.Group>
                 </Col>
-            </Row>
-            <Row>
                 <Col xs={6} md={2}>
                     <Form.Group>
                         <Form.Label className="responsive-label">{t('dateNaissance')}</Form.Label>
                         <Form.Control type="date" value={dateNaissance} onChange={(e) => setDateNaissance(e.target.value)} />
                     </Form.Group>
-                    <Button className='mt-3' variant='success' onClick={ajouterClient}>{t('ajouter')}</Button>
+                    <Button className='mt-3' variant='success' onClick={modifierClient}>{t('modifier')}</Button>
                 </Col>
             </Row>
+            <h2>{t('adresses')}</h2>
         </Container>
     )
 }

@@ -31,5 +31,16 @@
     "creationClient": "Create a new client",
     "ajouterClient": "Add a new client",
     "modifier": "Modify",
-    "supprimer": "Delete"
+    "supprimer": "Delete",
+    "modificationClient": "Client modification",
+    "modifierClient": "Modify a client",
+    "adresses": "Addresses",
+    "ajouterAdresse": "Add an address",
+    "numeroCivique": "Civic number",
+    "odonyme": "Street name",
+    "typeVoie": "Street type",
+    "codePostal": "Postal code",
+    "nomMunicipalite": "Municipality name",
+    "etat": "State",
+    "pays": "Country"
 }
