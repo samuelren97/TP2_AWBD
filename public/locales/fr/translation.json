@@ -47,5 +47,8 @@
     "non": "Non",
     "messageSuppression": "Voulez vous supprimer le client #",
     "messageErreurSuppression": "Il y a eu une erreur lors de la suppression du client",
-    "messageConfirmationSuppression": "Le client a été supprimé avec succès"
+    "messageConfirmationSuppression": "Le client a été supprimé avec succès",
+    "erreurNom": "Vous devez entrer un nom entre 2 et 50 charactères.",
+    "erreurPrenom": "Vous devez entrer un prénom entre 2 et 50 charactères.",
+    "erreurDateNaissance": "Vous devez entrer une date de naissance valide."
 }

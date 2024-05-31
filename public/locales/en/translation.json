@@ -47,5 +47,8 @@
     "oui": "Yes",
     "messageSuppression": "Are you sure you want to delete client #",
     "messageErreurSuppression": "There was an error while trying to delete the client",
-    "messageConfirmationSuppression": "Client was deleted successfully"
+    "messageConfirmationSuppression": "Client was deleted successfully",
+    "erreurNom": "You must enter a last name between 2 and 50 characters.",
+    "erreurPrenom": "You must enter a first name between 2 and 50 characters.",
+    "erreurDateNaissance": "You must enter a valid birth date."
 }

@@ -16,7 +16,8 @@ export function PageModification() {
         const chercherClient = async () => {
             const response = await fetch(`/api/Clients/${id}`);
             if(response.status === 404) {
-                <Navigate to="/404"/>
+                // <Navigate to="/404"/>
+                window.location.href = '/404';
             }
             else {
                 const body = await response.json();
@@ -43,6 +44,7 @@ export function PageModification() {
             })
         });
         console.log(response);
+        window.location.href = '/clients';
     }
 
     const ajouterAdresse = async (adresse) => {
