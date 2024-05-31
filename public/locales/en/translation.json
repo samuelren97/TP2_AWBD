@@ -42,5 +42,11 @@
     "codePostal": "Postal code",
     "nomMunicipalite": "Municipality name",
     "etat": "State",
-    "pays": "Country"
+    "pays": "Country",
+    "supprimer": "Delete",
+    "non": "No",
+    "oui": "Yes",
+    "messageSuppression": "Are you sure you want to delete client #",
+    "messageErreurSuppression": "There was an error while trying to delete the client",
+    "messageConfirmationSuppression": "Client was deleted successfully"
 }
