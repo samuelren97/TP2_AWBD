@@ -29,5 +29,7 @@
     "prenom": "First name",
     "dateNaissance": "Birth date",
     "creationClient": "Create a new client",
-    "ajouterClient": "Add a new client"
+    "ajouterClient": "Add a new client",
+    "modifier": "Modify",
+    "supprimer": "Delete"
 }
