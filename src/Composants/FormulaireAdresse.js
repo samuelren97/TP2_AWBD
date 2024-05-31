@@ -37,25 +37,23 @@ export function FormulaireAdresse({ handleClick, nomBouton }) {
         <Container>
             <h2>{t('ajouterAdresse')}</h2>
             <Row>
-                <Col xs={12} md={6}>
+                <Col xs={6} md={2}>
                     <Form.Group>
                         <Form.Label className="mb-3">{t('numeroCivique')}</Form.Label>
                         <Form.Control type="text" value={numeroCivique} onChange={(e) => setNumeroCivique(e.target.value)} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('odonyme')}</Form.Label>
-                        <Form.Control type="text" value={odonyme} onChange={(e) => setOdonyme(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group>
                         <Form.Label className="mb-3">{t('typeVoie')}</Form.Label>
                         <Form.Control type="text" value={typeVoie} onChange={(e) => setTypeVoie(e.target.value)} />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label className="mb-3">{t('codePostal')}</Form.Label>
-                        <Form.Control type="text" value={codePostal} onChange={(e) => setCodePostal(e.target.value)} />
-                    </Form.Group>
                 </Col>
+            </Row>
+            <Row>
                 <Col xs={12} md={6}>
+                    <Form.Group>
+                        <Form.Label className="mb-3">{t('odonyme')}</Form.Label>
+                        <Form.Control type="text" value={odonyme} onChange={(e) => setOdonyme(e.target.value)} />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Label className="mb-3">{t('nomMunicipalite')}</Form.Label>
                         <Form.Control type="text" value={nomMunicipalite} onChange={(e) => setNomMunicipalite(e.target.value)} />
@@ -67,6 +65,14 @@ export function FormulaireAdresse({ handleClick, nomBouton }) {
                     <Form.Group>
                         <Form.Label className="mb-3">{t('pays')}</Form.Label>
                         <Form.Control type="text" value={pays} onChange={(e) => setPays(e.target.value)} />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={6} md={2}>
+                    <Form.Group>
+                        <Form.Label className="mb-3">{t('codePostal')}</Form.Label>
+                        <Form.Control type="text" value={codePostal} onChange={(e) => setCodePostal(e.target.value)} />
                     </Form.Group>
                     <Button className='mt-3' variant='success' onClick={ajouter}>{nomBouton}</Button>
                 </Col>

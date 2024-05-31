@@ -22,7 +22,7 @@ export function PageModification() {
                 const body = await response.json();
                 setNom(body.nom);
                 setPrenom(body.prenom);
-                setDateNaissance(body.dateNaissance);
+                setDateNaissance(body.dateNaissance.toString().split('T')[0]);
             }
         }
         chercherClient();
@@ -73,6 +73,8 @@ export function PageModification() {
                         <Form.Control type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
                     </Form.Group>
                 </Col>
+            </Row>
+            <Row>
                 <Col xs={6} md={2}>
                     <Form.Group>
                         <Form.Label className="responsive-label">{t('dateNaissance')}</Form.Label>
