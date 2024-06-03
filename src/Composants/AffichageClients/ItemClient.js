@@ -7,7 +7,7 @@ function ItemClient({ client }) {
 
     return (
         <>
-        <Col xs={12} md={6} lg={4}>
+        <Col xs={12} md={6} xl={4}>
             <Card className='m-3'>
                 <Card.Body>
                     <Card.Title>
