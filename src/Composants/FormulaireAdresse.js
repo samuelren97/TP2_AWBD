@@ -34,7 +34,7 @@ export function FormulaireAdresse({ handleClick, nomBouton }) {
     }
 
     return (
-        <Container>
+        <>
             <h2>{t('ajouterAdresse')}</h2>
             <Row>
                 <Col xs={6} md={2}>
@@ -77,7 +77,7 @@ export function FormulaireAdresse({ handleClick, nomBouton }) {
                     <Button className='mt-3' variant='success' onClick={ajouter}>{nomBouton}</Button>
                 </Col>
             </Row>
-        </Container>
+        </>
     )
 }
 
