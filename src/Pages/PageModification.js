@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
+import { FormulaireClient } from '../Composants/FormulaireClient.js';
 
 export function PageModification() {
     const { id } = useParams();
@@ -16,7 +17,6 @@ export function PageModification() {
         const chercherClient = async () => {
             const response = await fetch(`/api/Clients/${id}`);
             if(response.status === 404) {
-                // <Navigate to="/404"/>
                 window.location.href = '/404';
             }
             else {
@@ -58,34 +58,39 @@ export function PageModification() {
         console.log(response);
     }
 
+    const listerAdresses = async () => {    
+        const response = await fetch(`/api/Clients/${id}/Adresses`);
+        const body = await response.json();
+        return body;
+    }
 
+    console.log('afiichage :' + nom + prenom + dateNaissance);
     return (
         <Container>
             <h1>{t('modificationClient')}</h1>
             <hr />
-            <h2>{t('modifierClient')}</h2>
-            <Row>
-                <Col xs={12} md={6}> 
-                    <Form.Group>
-                        <Form.Label  className="mb-3">{t('nom')}</Form.Label>
-                        <Form.Control  type="text" value={nom} onChange={(e) => setNom(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label className="responsive-label">{t('prenom')}</Form.Label>
-                        <Form.Control type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} />
-                    </Form.Group>
-                </Col>
-            </Row>
+            <FormulaireClient 
+                handleClick={modifierClient} 
+                nomBouton='modifier' 
+                nom={nom}
+                prenom={prenom}
+                dateNaissance={dateNaissance}
+                setNom={setNom}
+                setPrenom={setPrenom}
+                setDateNaissance={setDateNaissance}
+
+            />
+            <FormulaireAdresse 
+                handleClick={ajouterAdresse} 
+                nomBouton='ajouter' 
+                adresse={null} 
+            />
+            <h2>{t('adresses')}</h2>
             <Row>
                 <Col xs={6} md={2}>
-                    <Form.Group>
-                        <Form.Label className="responsive-label">{t('dateNaissance')}</Form.Label>
-                        <Form.Control type="date" value={dateNaissance} onChange={(e) => setDateNaissance(e.target.value)} />
-                    </Form.Group>
-                    <Button className='mt-3' variant='success' onClick={modifierClient}>{t('modifier')}</Button>
+                    <Button onClick={listerAdresses}>Lister adresses</Button>
                 </Col>
             </Row>
-            <FormulaireAdresse nomBouton={t('ajouter')} handleClick={ajouterAdresse}/>
         </Container>
     )
 }
