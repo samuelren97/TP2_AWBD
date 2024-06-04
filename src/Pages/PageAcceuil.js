@@ -9,7 +9,7 @@ function PageAcceuil() {
 
     return (
         <>
-        <h1>{t('acceuil')}</h1>
+        <h1 className='mt-3'>{t('acceuil')}</h1>
         <hr />
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
