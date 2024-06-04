@@ -29,6 +29,18 @@ const obtenirAdressesUniques = (clients, champ) => {
     }, []);
 }
 
+const handleCheckFiltre = (nomFiltre, filtres, setFiltres) => {
+    let nouvFiltres = [...filtres];
+    const indiceFiltre = nouvFiltres.indexOf(nomFiltre);
+    if (indiceFiltre >= 0) {
+        nouvFiltres.splice(indiceFiltre, 1);
+    } else {
+        nouvFiltres.push(nomFiltre);
+    }
+
+    setFiltres(nouvFiltres);
+};
+
 function PageClients() {
     const [ clients, setClients] = useState([]);
     const [ municipalites, setMunicipalites] = useState([]);
@@ -39,47 +51,30 @@ function PageClients() {
     const [ filtresEtats, setFiltresEtats ] = useState([]);
     const [ filtresPays, setFiltresPays ] = useState([]);
 
-    const handleCheckMunicipalite = nomMunicipalite => {
-        let nouvFiltres = [...filtresMunicipalites];
-        const indiceMunicipalite = nouvFiltres.indexOf(nomMunicipalite);
-        if (indiceMunicipalite >= 0) {
-            nouvFiltres.splice(indiceMunicipalite, 1);
-        } else {
-            nouvFiltres.push(nomMunicipalite);
+    const filtrerClients = () => {
+        if (filtresMunicipalites.length == 0 && 
+            filtresEtats.length == 0 &&
+            filtresPays.length == 0) 
+        {
+            return clients;
         }
 
-        console.log(nouvFiltres);
+        return clients.reduce((nouvClients, client) => {
+            let aEteRajoute = false
+            client.adresses.forEach(adresse => {
+                if (!aEteRajoute && 
+                    (filtresMunicipalites.includes(adresse.nomMunicipalite) ||
+                    filtresEtats.includes(adresse.etat) ||
+                    filtresPays.includes(adresse.pays))) 
+                {
+                    nouvClients.push(client);
+                    aEteRajoute = true;
+                }
+            });
 
-        setFiltresMunicipalites(nouvFiltres);
-    };
-
-    const handleCheckEtat = nomEtat => {
-        let nouvFiltres = [...filtresEtats];
-        const indiceEtat = nouvFiltres.indexOf(nomEtat);
-        if (indiceEtat >= 0) {
-            nouvFiltres.splice(indiceEtat, 1);
-        } else {
-            nouvFiltres.push(nomEtat);
-        }
-
-        console.log(nouvFiltres);
-
-        setFiltresEtats(nouvFiltres);
-    };
-
-    const handleCheckPays = nomPays => {
-        let nouvFiltres = [...filtresPays];
-        const indicePays = nouvFiltres.indexOf(nomPays);
-        if (indicePays >= 0) {
-            nouvFiltres.splice(indicePays, 1);
-        } else {
-            nouvFiltres.push(nomPays);
-        }
-
-        console.log(nouvFiltres);
-
-        setFiltresPays(nouvFiltres);
-    };
+            return nouvClients;
+        }, []);
+    }
 
     useEffect(() => {
         const requeteClients = async () => {
@@ -106,7 +101,7 @@ function PageClients() {
         requeteClients();
     }, []);
 
-    let titreAucunClient = (
+    const titreAucunClient = (
         <div className='text-center'>
             <h3>
                 Aucun client pour le moment...
@@ -114,6 +109,8 @@ function PageClients() {
             </h3>
         </div>
     );
+
+    const clientsAAfficher = filtrerClients();
     
     return (
         <Row>
@@ -125,17 +122,17 @@ function PageClients() {
                     filtresMunicipalites={filtresMunicipalites}
                     filtresEtats={filtresEtats}
                     filtresPays={filtresPays}
-                    checkMunicipalite={handleCheckMunicipalite}
-                    checkEtat={handleCheckEtat}
-                    checkPays={handleCheckPays}
+                    checkMunicipalite={nomFiltre => handleCheckFiltre(nomFiltre, filtresMunicipalites, setFiltresMunicipalites)}
+                    checkEtat={nomFiltre => handleCheckFiltre(nomFiltre, filtresEtats, setFiltresEtats)}
+                    checkPays={nomFiltre => handleCheckFiltre(nomFiltre, filtresPays, setFiltresPays)}
                 />
             </Col>
             <Col xs={12} md={10}>
                 <Row>
                     {
-                        clients.length > 0 
+                        clientsAAfficher.length > 0 
                             ? 
-                                clients.map(client => {
+                                clientsAAfficher.map(client => {
                                     return <ItemClient key={client.clientId} client={client} />
                                 }) 
                             : 
