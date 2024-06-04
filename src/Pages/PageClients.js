@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 
 import ItemClient from '../Composants/AffichageClients/ItemClient.js';
 import FiltresClients from '../Composants/AffichageClients/FiltresClients.js';
+import OptionsTriage from '../Composants/AffichageClients/OptionsTriage.js';
 
 const obtenirAdressesUniques = (clients, champ) => {
     return clients.reduce((nouvTab, client) => {
@@ -51,6 +52,9 @@ function PageClients() {
     const [ filtresEtats, setFiltresEtats ] = useState([]);
     const [ filtresPays, setFiltresPays ] = useState([]);
 
+    const [ optionTrie, setOptionTrie ] = useState('nom');
+    const [ ordreTrie, setOrdreTrie ] = useState('croissant');
+
     const filtrerClients = () => {
         if (filtresMunicipalites.length == 0 && 
             filtresEtats.length == 0 &&
@@ -74,6 +78,20 @@ function PageClients() {
 
             return nouvClients;
         }, []);
+    }
+
+    const trierClients = clients => {
+        const optionContraire = optionTrie === 'nom' ? 'prenom' : 'nom';
+        clients.sort((clientGauche, clientDroite) => {
+            if (clientGauche[optionTrie] === clientDroite[optionTrie]) {
+                return clientGauche[optionContraire].localeCompare(clientDroite[optionContraire]);
+            }
+            return clientGauche[optionTrie].localeCompare(clientDroite[optionTrie]);
+        });
+
+        if (ordreTrie === 'decroissant') {
+            clients.reverse();
+        }
     }
 
     useEffect(() => {
@@ -111,10 +129,17 @@ function PageClients() {
     );
 
     const clientsAAfficher = filtrerClients();
+    trierClients(clientsAAfficher);
     
     return (
         <Row>
-            <Col xs={12} md={2}>
+            <Col xs={12} lg={2}>
+                <OptionsTriage
+                    optionTrie={optionTrie}
+                    setOptionTrie={setOptionTrie}
+                    ordreTrie={ordreTrie}
+                    setOrdreTrie={setOrdreTrie}
+                />
                 <FiltresClients
                     municipalites={municipalites}
                     etats={etats}
@@ -127,7 +152,7 @@ function PageClients() {
                     checkPays={nomFiltre => handleCheckFiltre(nomFiltre, filtresPays, setFiltresPays)}
                 />
             </Col>
-            <Col xs={12} md={10}>
+            <Col xs={12} lg={10}>
                 <Row>
                     {
                         clientsAAfficher.length > 0 

@@ -53,5 +53,8 @@
     "messageConfirmationSuppression": "Le client a été supprimé avec succès",
     "erreurNom": "Vous devez entrer un nom entre 2 et 50 charactères.",
     "erreurPrenom": "Vous devez entrer un prénom entre 2 et 50 charactères.",
-    "erreurDateNaissance": "Vous devez entrer une date de naissance valide."
+    "erreurDateNaissance": "Vous devez entrer une date de naissance valide.",
+    "trierPar": "Trier par",
+    "decroissant": "Décroissant",
+    "croissant": "Croissant"
 }
