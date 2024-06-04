@@ -67,5 +67,7 @@
     "croissant": "Ascending",
     "messageErreurSuppressionAdresse": "There was an error while trying to delete the address",
     "messageConfirmationSuppressionAdresse": "Address was deleted successfully",
-    "messageSuppressionAdresse": "Are you sure you want to delete address #"
+    "messageSuppressionAdresse": "Are you sure you want to delete address #",
+    "clients": "Customers",
+    "creerClient": "Create a client"
 }

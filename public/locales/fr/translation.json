@@ -67,5 +67,7 @@
     "croissant": "Croissant",
     "messageErreurSuppressionAdresse": "Il y a eu une erreur lors de la suppression de l'adresse",
     "messageConfirmationSuppressionAdresse": "L'adresse a été supprimée avec succès",
-    "messageSuppressionAdresse": "Voulez vous supprimer l'adresse #"
+    "messageSuppressionAdresse": "Voulez vous supprimer l'adresse #",
+    "clients": "Clients",
+    "creerClient": "Créer un client"
 }

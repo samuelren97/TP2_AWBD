@@ -29,13 +29,16 @@ export function PageModificationClient() {
             if (response.status === 404) {
                 navigate('/404');
             }
-            else {
+            if (response.status === 200){
                 const body = await response.json();
                 setNom(body.nom);
                 setPrenom(body.prenom);
                 setDateNaissance(body.dateNaissance.toString().split('T')[0]);
                 setAdresses(body.adresses);
                 console.log(body.adresses);
+            }
+            else {
+                console.error('Impossible de charger le client');
             }
         }
         chercherClient();

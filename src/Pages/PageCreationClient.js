@@ -25,9 +25,8 @@ export function PageCreationClient() {
                 adresses: []
             })
         });
-        console.log(response);
 
-        if (response.ok) {
+        if (response.status === 201) {
             setNom('');
             setPrenom('');
             setDateNaissance('');

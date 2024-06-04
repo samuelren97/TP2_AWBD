@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
@@ -38,10 +38,11 @@ export function PageModificationAdresse() {
     useEffect(() => {
         const chercherAdresse = async () => {
             const response = await fetch(`/api/clients/${idClient}/adresses/${idAdresse}`);
-            if(response.status === 404) {
+            if (response.status === 404) {
                 navigate('/404');
             }
-            else {
+
+            if (response.status === 200) {
                 const body = await response.json();
                 setNumeroCivique(body.numeroCivique);
                 setOdonyme(body.odonyme);
@@ -51,16 +52,16 @@ export function PageModificationAdresse() {
                 setEtat(body.etat);
                 setPays(body.pays);
             }
+            else {
+                console.error('Impossible de charger l\'adresse');
+            }
         }
         chercherAdresse();
     }, [idAdresse, idClient, navigate]); // warning si on enlève navigate idClient et idAdresse
 
-    
+
     const modifierAdresse = async (nouvAdresse) => {
-
-
-        console.log(nouvAdresse);
-        const response = await fetch(`/api/clients/${idClient}/adresses/${idAdresse}`, { 
+        const response = await fetch(`/api/clients/${idClient}/adresses/${idAdresse}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -76,21 +77,20 @@ export function PageModificationAdresse() {
                 pays: nouvAdresse.pays
             })
         });
-        console.log(response);
         navigate(`/modificationClient/${idClient}`);
     }
 
     return (
         <Container>
             <h1>{t('modificationAdresse')}</h1>
-            {console.log(adresse)}   
+            {console.log(adresse)}
             {
-                adresse == null ? 
+                adresse == null ?
                     <p>{t('chargement')}</p> :
-                    <FormulaireAdresse 
-                        adresse={adresse} 
-                        nomBouton='modifier' 
-                        handleClick={modifierAdresse} 
+                    <FormulaireAdresse
+                        adresse={adresse}
+                        nomBouton='modifier'
+                        handleClick={modifierAdresse}
                     />
             }
         </Container>
