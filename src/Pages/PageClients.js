@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 import ItemClient from '../Composants/AffichageClients/ItemClient.js';
 import FiltresClients from '../Composants/AffichageClients/FiltresClients.js';
 import OptionsTriage from '../Composants/AffichageClients/OptionsTriage.js';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const obtenirAdressesUniques = (clients, champ) => {
     return clients.reduce((nouvTab, client) => {
@@ -54,6 +56,9 @@ function PageClients() {
 
     const [ optionTrie, setOptionTrie ] = useState('nom');
     const [ ordreTrie, setOrdreTrie ] = useState('croissant');
+
+    const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const filtrerClients = () => {
         if (filtresMunicipalites.length == 0 && 
@@ -134,6 +139,13 @@ function PageClients() {
     return (
         <Row>
             <Col xs={12} lg={2}>
+                <Button 
+                    variant='success'
+                    className='mt-3 w-100'
+                    onClick={() => navigate('/creationClient')}
+                >
+                    {t('creerClient')}
+                </Button>
                 <OptionsTriage
                     optionTrie={optionTrie}
                     setOptionTrie={setOptionTrie}
