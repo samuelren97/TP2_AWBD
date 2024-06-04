@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+const TIMEOUT_REDIRECTION = 3000;
 
 function PageSuppressionClient() {
     const { id } = useParams();
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [ messageConfirmation, setMessageConfirmation ] = useState({
         variant: '',
         message: ''
@@ -19,7 +22,7 @@ function PageSuppressionClient() {
         console.log(messageConfirmation.variant);
 
         if (reponse.status != 200 && messageConfirmation.variant.length == 0) {
-            window.location.href = '/404';
+            navigate('/404');
         }
     };
     obtenirClient();
@@ -49,7 +52,7 @@ function PageSuppressionClient() {
                 <Button
                     variant='primary'
                     className='me-2 ps-5 pe-5'
-                    onClick={() => window.location.href = '/clients'}
+                    onClick={() => navigate('/clients')}
                 >
                     {t('non')}
                 </Button>
@@ -65,7 +68,7 @@ function PageSuppressionClient() {
     )
 
     if (messageConfirmation.variant.length > 0) {
-        setTimeout(() => window.location.href ='/clients', 3000);
+        setTimeout(() => navigate('/clients'), TIMEOUT_REDIRECTION);
         composantAAfficher = (
             <Alert variant={messageConfirmation.variant}>
                 {messageConfirmation.message}

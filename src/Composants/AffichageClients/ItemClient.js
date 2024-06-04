@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 function ItemClient({ client }) {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -16,14 +18,15 @@ function ItemClient({ client }) {
                     <Card.Text className='mt-3 text-end'>
                         <Button 
                             variant='primary'
-                            onClick={()=> window.location.href=`/modificationClient/${client.clientId}`}
+                            onClick={() => navigate(`/modificationClient/${client.clientId}`)}
                         >
                             {t('modifier')}
                         </Button>
+
                         <Button
                             variant='danger'
                             className='ms-3'
-                            onClick={() => window.location.href=`/suppressionClient/${client.clientId}`}
+                            onClick={() => navigate(`/suppressionClient/${client.clientId}`)}
                         >
                             {t('supprimer')}
                         </Button>
