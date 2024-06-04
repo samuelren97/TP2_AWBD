@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -21,12 +21,13 @@ export function PageModificationClient() {
     const [etat, setEtat] = useState('');
     const [pays, setPays] = useState('');
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const chercherClient = async () => {
             const response = await fetch(`/api/Clients/${idClient}`);
             if (response.status === 404) {
-                window.location.href = '/404';
+                navigate('/404');
             }
             else {
                 const body = await response.json();
@@ -55,7 +56,7 @@ export function PageModificationClient() {
             })
         });
         console.log(response);
-        window.location.href = '/clients';
+        navigate('/clients');
     }
 
     const ajouterAdresse = async (adresse) => {

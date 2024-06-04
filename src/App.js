@@ -32,7 +32,7 @@ function App() {
           <Route path='/creationClient' element={<PageCreationClient />} />
           <Route path='/modificationClient/:idClient' element={<PageModificationClient />} />
           <Route path='/modificationClient/:idClient/modificationAdresse/:idAdresse' element={<PageModificationAdresse />} />
-          <Route path='/suppressionAdresse/:idClient/suppressionAdresse/:idAdresse' element={<PageSuppressionAdresse />} />
+          <Route path='/suppressionAdresse/:idClient/:idAdresse' element={<PageSuppressionAdresse />} />
           <Route path='*' element={<Page404 />} />
         </Routes>
       </Container>

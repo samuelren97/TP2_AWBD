@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 export function ItemAdresse({ adresse, idClient }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -19,7 +21,7 @@ export function ItemAdresse({ adresse, idClient }) {
               <Button
                 variant="primary"
                 onClick={() =>
-                  (window.location.href = `/modificationClient/${idClient}/modificationAdresse/${adresse.adresseId}`)
+                  (navigate(`/modificationClient/${idClient}/modificationAdresse/${adresse.adresseId}`))
                 }
               >
                 {t("modifier")}
@@ -28,7 +30,7 @@ export function ItemAdresse({ adresse, idClient }) {
                 variant="danger"
                 className="ms-3"
                 onClick={() =>
-                  (window.location.href = `/suppressionAdresse/${idClient}/suppressionAdresse/${adresse.adresseId}`)
+                  (navigate(`/suppressionAdresse/${idClient}/${adresse.adresseId}`))
                 }
               >
                 {t("supprimer")}
