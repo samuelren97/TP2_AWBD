@@ -53,14 +53,13 @@ export function PageModificationAdresse() {
             }
         }
         chercherAdresse();
-    }, []);
+    }, [idAdresse, idClient, navigate]); // warning si on enlève navigate idClient et idAdresse
 
     
     const modifierAdresse = async (nouvAdresse) => {
 
 
         console.log(nouvAdresse);
-        let test = nouvAdresse.numeroCivique;
         const response = await fetch(`/api/clients/${idClient}/adresses/${idAdresse}`, { 
             method: 'PUT',
             headers: {

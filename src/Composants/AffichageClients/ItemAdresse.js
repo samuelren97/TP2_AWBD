@@ -28,7 +28,7 @@ export function ItemAdresse({ adresse, idClient }) {
                 variant="danger"
                 className="ms-3"
                 onClick={() =>
-                  (window.location.href = `/modificationClient/${idClient}/suppressionAdresse/${adresse.adresseId}`)
+                  (window.location.href = `/suppressionAdresse/${idClient}/suppressionAdresse/${adresse.adresseId}`)
                 }
               >
                 {t("supprimer")}

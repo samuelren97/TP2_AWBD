@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
@@ -38,7 +38,7 @@ export function PageModificationClient() {
             }
         }
         chercherClient();
-    }, []);
+    }, [idClient]);
 
     const modifierClient = async () => {
         const response = await fetch(`/api/Clients/${idClient}`, {

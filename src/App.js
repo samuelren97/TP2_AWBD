@@ -13,6 +13,7 @@ import PageAcceuil from './Pages/PageAcceuil.js';
 import {PageCreationClient} from './Pages/PageCreationClient.js';
 import {PageModificationClient} from './Pages/PageModificationClient.js';
 import {PageModificationAdresse} from './Pages/PageModificationAdresse.js';
+import {PageSuppressionAdresse} from './Pages/PageSuppressionAdresse.js';
 import PageClients from './Pages/PageClients.js';
 import PageSuppressionClient from './Pages/PageSuppressionClient.js';
 import Page404 from './Pages/Page404.js'
@@ -31,6 +32,7 @@ function App() {
           <Route path='/creationClient' element={<PageCreationClient />} />
           <Route path='/modificationClient/:idClient' element={<PageModificationClient />} />
           <Route path='/modificationClient/:idClient/modificationAdresse/:idAdresse' element={<PageModificationAdresse />} />
+          <Route path='/suppressionAdresse/:idClient/suppressionAdresse/:idAdresse' element={<PageSuppressionAdresse />} />
           <Route path='*' element={<Page404 />} />
         </Routes>
       </Container>
