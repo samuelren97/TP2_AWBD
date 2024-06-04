@@ -1,9 +1,12 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function PageAcceuil() {
     const { t } = useTranslation();
+    const { isAuthenticated,loginWithRedirect } = useAuth0();
+
     return (
         <>
         <h1>{t('acceuil')}</h1>
@@ -19,7 +22,7 @@ function PageAcceuil() {
             Id faucibus nisl tincidunt eget. Turpis in eu mi bibendum. Sem nulla pharetra diam sit amet nisl suscipit adipiscing.
         </p>
         <div className='text-end'>
-            <Button variant='success'>{t('connexion')}</Button>
+            {!isAuthenticated && <Button onClick={loginWithRedirect} variant='success'>{t('connexion')}</Button>}
         </div>
         </>
     )
