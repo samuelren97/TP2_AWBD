@@ -7,7 +7,7 @@ function OptionsTriage({ optionTrie, setOptionTrie, ordreTrie, setOrdreTrie }) {
     const { t } = useTranslation();
     
     return (
-        <div className='mt-3 mb-5 p-3 border rounded'>
+        <div className='mt-3 mb-3 p-3 border rounded'>
             <h4>{t('trierPar')}</h4>
             <hr/>
             
