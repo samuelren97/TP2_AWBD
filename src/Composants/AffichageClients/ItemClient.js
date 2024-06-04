@@ -13,7 +13,7 @@ function ItemClient({ client }) {
             <Card className='m-3'>
                 <Card.Body>
                     <Card.Title>
-                        <h3>{client.nom}, {client.prenom}</h3>
+                        <h3>{client.prenom} {client.nom}</h3>
                     </Card.Title>
                     <Card.Text className='mt-3 text-end'>
                         <Button 

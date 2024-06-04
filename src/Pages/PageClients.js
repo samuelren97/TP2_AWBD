@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { PiMaskSad } from "react-icons/pi";
 
 import ItemClient from '../Composants/AffichageClients/ItemClient.js';
 import FiltresClients from '../Composants/AffichageClients/FiltresClients.js';
 import OptionsTriage from '../Composants/AffichageClients/OptionsTriage.js';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 const obtenirAdressesUniques = (clients, champ) => {
     return clients.reduce((nouvTab, client) => {
@@ -124,19 +125,14 @@ function PageClients() {
         requeteClients();
     }, []);
 
-    const titreAucunClient = (
-        <div className='text-center'>
-            <h3>
-                Aucun client pour le moment...
-                {/* <i>TODO: Ajouter icone</i> */}
-            </h3>
-        </div>
-    );
-
     const clientsAAfficher = filtrerClients();
     trierClients(clientsAAfficher);
     
     return (
+        <>
+        <h1 className='mt-3'>Clients</h1>
+        <hr />
+
         <Row>
             <Col xs={12} lg={2}>
                 <Button 
@@ -173,11 +169,21 @@ function PageClients() {
                                     return <ItemClient key={client.clientId} client={client} />
                                 }) 
                             : 
-                                titreAucunClient
+                                (
+                                    <div className='text-center'>
+                                        <h3>
+                                            {t('messageAucunClient')}
+                                            <div className='text-center'>
+                                                <PiMaskSad size={70} />
+                                            </div>
+                                        </h3>
+                                    </div>
+                                )
                     }
                 </Row>
             </Col>
         </Row>
+        </>
     )
 }
 

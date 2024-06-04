@@ -77,7 +77,7 @@ export function PageModificationClient() {
     }
 
     return (
-        <Container>
+        <Container className='mt-3'>
             <h1>{t('modificationClient')}</h1>
             <hr />
             <FormulaireClient
@@ -91,36 +91,42 @@ export function PageModificationClient() {
                 setDateNaissance={setDateNaissance}
 
             />
-            <FormulaireAdresse
-                handleClick={ajouterAdresse}
-                nomBouton='ajouterAdresse'
-                adresse={{
-                    numeroCivique: numeroCivique,
-                    odonyme: odonyme,
-                    typeVoie: typeVoie,
-                    codePostal: codePostal,
-                    nomMunicipalite: nomMunicipalite,
-                    etat: etat,
-                    pays: pays,
-                    setNumeroCivique: setNumeroCivique,
-                    setOdonyme: setOdonyme,
-                    setTypeVoie: setTypeVoie,
-                    setCodePostal: setCodePostal,
-                    setNomMunicipalite: setNomMunicipalite,
-                    setEtat: setEtat,
-                    setPays: setPays
-                }}
-            />
-            <h2>{t('adresses')}</h2>
-            <Row>
-                {adresses.map((adresse, index) => {
-                    console.log(adresse)
-                    return <ItemAdresse key={index} adresse={adresse} idClient={idClient} />
+            
+            <div className='mt-3 p-3 border rounded'>
+                <h2 className='mt-3'>{t('adresses')}</h2>
+                <Row>
+                    {adresses.map((adresse, index) => {
+                        console.log(adresse)
+                        return <ItemAdresse key={index} adresse={adresse} idClient={idClient} />
+                    })
+                    }
+                    {
+                        adresses.length === 0 ? <h5>{t('messageAucuneAdresse')}</h5> : ''
+                    }
+                <hr className='mt-3'/>
 
-                })
-                }
-
-            </Row>
+                </Row>
+                <FormulaireAdresse
+                    handleClick={ajouterAdresse}
+                    nomBouton='ajouterAdresse'
+                    adresse={{
+                        numeroCivique: numeroCivique,
+                        odonyme: odonyme,
+                        typeVoie: typeVoie,
+                        codePostal: codePostal,
+                        nomMunicipalite: nomMunicipalite,
+                        etat: etat,
+                        pays: pays,
+                        setNumeroCivique: setNumeroCivique,
+                        setOdonyme: setOdonyme,
+                        setTypeVoie: setTypeVoie,
+                        setCodePostal: setCodePostal,
+                        setNomMunicipalite: setNomMunicipalite,
+                        setEtat: setEtat,
+                        setPays: setPays
+                    }}
+                />
+            </div>
         </Container>
     )
 }

@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next';
 
 
 import { FormulaireClient } from '../Composants/FormulaireClient.js';
+import { useNavigate } from 'react-router-dom';
 
 export function PageCreationClient() {
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [dateNaissance, setDateNaissance] = useState('');
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const ajouterClient = async () => {
         const response = await fetch('/api/Clients', {
@@ -30,14 +32,15 @@ export function PageCreationClient() {
             setNom('');
             setPrenom('');
             setDateNaissance('');
+            navigate('/clients');
         } else {
             console.error('Impossible d\'ajouter le client');
         }
     }
 
     return (
-        <Container>
-            <h1>{t('creationClient')}</h1>
+        <Container className='mt-3'>
+            <h1>{t('ajouterClient')}</h1>
             <hr />
             <FormulaireClient
                 handleClick={ajouterClient}

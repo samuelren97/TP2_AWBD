@@ -5,7 +5,7 @@ import { RiContactsLine } from 'react-icons/ri';
 
 import Langages from '../i18n/Langages.js';
 
-function BarreDeNavigation({ estAuthentifie }) {
+function BarreDeNavigation({ estAuthentifie, deconnexion }) {
     const { t } = useTranslation();
 
     let liens = (
@@ -23,6 +23,10 @@ function BarreDeNavigation({ estAuthentifie }) {
             >
                 {t('creerClient')}
             </Nav.Link>
+
+            <Nav.Link onClick={deconnexion}>
+                {t('deconnexion')}
+            </Nav.Link>
         </Nav>
     );
 
@@ -36,7 +40,9 @@ function BarreDeNavigation({ estAuthentifie }) {
                     {' ' + t('titreApp')}
                 </Navbar.Brand>
                 <Navbar.Toggle />
-                { estAuthentifie && liens}
+                <Navbar.Collapse>
+                    { estAuthentifie && liens}
+                </Navbar.Collapse>
                 <Navbar.Collapse className='me-4 justify-content-end'>
                     <Langages />
                 </Navbar.Collapse>
