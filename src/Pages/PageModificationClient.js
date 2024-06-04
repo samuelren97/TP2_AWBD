@@ -33,7 +33,7 @@ export function PageModificationClient() {
                 const body = await response.json();
                 setNom(body.nom);
                 setPrenom(body.prenom);
-                setDateNaissance(body.dateNaissance.toString().split('T')[0]);
+                setDateNaissance(body.dateNaissance === null ? '' : body.dateNaissance.toString().split('T')[0]);
                 setAdresses(body.adresses);
                 console.log(body.adresses);
             }
