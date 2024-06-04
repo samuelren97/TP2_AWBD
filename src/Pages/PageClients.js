@@ -29,6 +29,19 @@ const obtenirAdressesUniques = (clients, champ) => {
     }, []);
 }
 
+const handleCheckFiltre = (nomFiltre, filtres, setFiltres) => {
+    let nouvFiltres = [...filtres];
+    const indiceFiltre = nouvFiltres.indexOf(nomFiltre);
+    if (indiceFiltre >= 0) {
+        nouvFiltres.splice(indiceFiltre, 1);
+    } else {
+        nouvFiltres.push(nomFiltre);
+    }
+
+    console.log(nouvFiltres);
+    setFiltres(nouvFiltres);
+};
+
 function PageClients() {
     const [ clients, setClients] = useState([]);
     const [ municipalites, setMunicipalites] = useState([]);
@@ -38,48 +51,6 @@ function PageClients() {
     const [ filtresMunicipalites, setFiltresMunicipalites ] = useState([]);
     const [ filtresEtats, setFiltresEtats ] = useState([]);
     const [ filtresPays, setFiltresPays ] = useState([]);
-
-    const handleCheckMunicipalite = nomMunicipalite => {
-        let nouvFiltres = [...filtresMunicipalites];
-        const indiceMunicipalite = nouvFiltres.indexOf(nomMunicipalite);
-        if (indiceMunicipalite >= 0) {
-            nouvFiltres.splice(indiceMunicipalite, 1);
-        } else {
-            nouvFiltres.push(nomMunicipalite);
-        }
-
-        console.log(nouvFiltres);
-
-        setFiltresMunicipalites(nouvFiltres);
-    };
-
-    const handleCheckEtat = nomEtat => {
-        let nouvFiltres = [...filtresEtats];
-        const indiceEtat = nouvFiltres.indexOf(nomEtat);
-        if (indiceEtat >= 0) {
-            nouvFiltres.splice(indiceEtat, 1);
-        } else {
-            nouvFiltres.push(nomEtat);
-        }
-
-        console.log(nouvFiltres);
-
-        setFiltresEtats(nouvFiltres);
-    };
-
-    const handleCheckPays = nomPays => {
-        let nouvFiltres = [...filtresPays];
-        const indicePays = nouvFiltres.indexOf(nomPays);
-        if (indicePays >= 0) {
-            nouvFiltres.splice(indicePays, 1);
-        } else {
-            nouvFiltres.push(nomPays);
-        }
-
-        console.log(nouvFiltres);
-
-        setFiltresPays(nouvFiltres);
-    };
 
     useEffect(() => {
         const requeteClients = async () => {
@@ -125,9 +96,9 @@ function PageClients() {
                     filtresMunicipalites={filtresMunicipalites}
                     filtresEtats={filtresEtats}
                     filtresPays={filtresPays}
-                    checkMunicipalite={handleCheckMunicipalite}
-                    checkEtat={handleCheckEtat}
-                    checkPays={handleCheckPays}
+                    checkMunicipalite={nomFiltre => handleCheckFiltre(nomFiltre, filtresMunicipalites, setFiltresMunicipalites)}
+                    checkEtat={nomFiltre => handleCheckFiltre(nomFiltre, filtresEtats, setFiltresEtats)}
+                    checkPays={nomFiltre => handleCheckFiltre(nomFiltre, filtresPays, setFiltresPays)}
                 />
             </Col>
             <Col xs={12} md={10}>
