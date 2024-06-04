@@ -25,6 +25,7 @@
     "sauvegarder": "Save",
     "acceuil": "Index",
     "connexion": "Login",
+    "deconnexion": "Logout",
     "nom": "Last name",
     "prenom": "First name",
     "dateNaissance": "Birth date",
@@ -69,5 +70,7 @@
     "messageConfirmationSuppressionAdresse": "Address was deleted successfully",
     "messageSuppressionAdresse": "Are you sure you want to delete address #",
     "clients": "Customers",
-    "creerClient": "Create a client"
+    "creerClient": "Create a client",
+    "messageAucuneAdresse": "There are no addresses for this client",
+    "messageAucunClient": "There are no clients at the moment..."
 }
