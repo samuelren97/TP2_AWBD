@@ -4,33 +4,56 @@ import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
-    const [numeroCivique, setNumeroCivique] = useState(adresse == null ? '' : adresse.numeroCivique);
-    const [odonyme, setOdonyme] = useState(adresse == null ? '' : adresse.odonyme);
-    const [typeVoie, setTypeVoie] = useState(adresse == null ? '' : adresse.typeVoie);
-    const [codePostal, setCodePostal] = useState(adresse == null ? '' : adresse.codePostal);
-    const [nomMunicipalite, setNomMunicipalite] = useState(adresse == null ? '' : adresse.nomMunicipalite);
-    const [etat, setEtat] = useState(adresse == null ? '' : adresse.etat);
-    const [pays, setPays] = useState(adresse == null ? '' : adresse.pays);
+    const [erreurs, setErreurs] = useState({});
     const { t } = useTranslation();
-
+    
     const handleSubmit = () => {
-        handleClick({
-            adresseId: adresse?.adresseId,
-            numeroCivique: numeroCivique,
-            odonyme: odonyme,
-            typeVoie: typeVoie,
-            codePostal: codePostal,
-            nomMunicipalite: nomMunicipalite,
-            etat: etat,
-            pays: pays
-        });
-        setNumeroCivique('');
-        setOdonyme('');
-        setTypeVoie('');
-        setCodePostal('');
-        setNomMunicipalite('');
-        setEtat('');
-        setPays('');
+        if (validerChampsAdresse()) {
+            handleClick({
+                numeroCivique: adresse.numeroCivique,
+                odonyme: adresse.odonyme,
+                typeVoie: adresse.typeVoie,
+                codePostal: adresse.codePostal,
+                nomMunicipalite: adresse.nomMunicipalite,
+                etat: adresse.etat,
+                pays: adresse.pays
+            });
+            adresse.setNumeroCivique('');
+            adresse.setOdonyme('');
+            adresse.setTypeVoie('');
+            adresse.setCodePostal('');
+            adresse.setNomMunicipalite('');
+            adresse.setEtat('');
+            adresse.setPays('');
+        }
+        }
+
+    const validerChampsAdresse = () => {
+        const nouvellesErreurs = {};
+        if (isNaN(adresse.numeroCivique) || adresse.numeroCivique.length < 1 ) {
+            nouvellesErreurs.numeroCivique = t('erreurNumeroCivique');
+        }
+        if (adresse.odonyme.length < 2 || adresse.odonyme.length > 50) {
+            nouvellesErreurs.odonyme = t('erreurOdonyme');
+        }
+        if (adresse.typeVoie.length < 2 || adresse.typeVoie.length > 50) {
+            nouvellesErreurs.typeVoie = t('erreurTypeVoie');
+        }
+        if (adresse.codePostal.length < 2 || adresse.codePostal.length > 10) {
+            nouvellesErreurs.codePostal = t('erreurCodePostal');
+        }
+        if (adresse.nomMunicipalite.length < 2 || adresse.nomMunicipalite.length > 50) {
+            nouvellesErreurs.nomMunicipalite = t('erreurNomMunicipalite');
+        }
+        if (adresse.etat.length < 2 || adresse.etat.length > 50) {
+            nouvellesErreurs.etat = t('erreurEtat');
+        }
+        if (adresse.pays.length < 2 || adresse.pays.length > 50) {
+            nouvellesErreurs.pays = t('erreurPays');
+        }
+
+        setErreurs(nouvellesErreurs);
+        return Object.keys(nouvellesErreurs).length === 0;
     }
 
     return (
@@ -42,17 +65,19 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         <Form.Label className="mb-3">{t('numeroCivique')}</Form.Label>
                         <Form.Control 
                             type="text"     
-                            value={numeroCivique} 
-                            onChange={(e) => setNumeroCivique(e.target.value)} 
+                            value={adresse.numeroCivique} 
+                            onChange={(e) => adresse.setNumeroCivique(e.target.value)} 
                         />
+                        {erreurs.numeroCivique && <p className='text-danger'>{erreurs.numeroCivique}</p>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="mb-3">{t('typeVoie')}</Form.Label>
                         <Form.Control 
                             type="text" 
-                            value={typeVoie} 
-                            onChange={(e) => setTypeVoie(e.target.value)} 
+                            value={adresse.typeVoie} 
+                            onChange={(e) => adresse.setTypeVoie(e.target.value)} 
                         />
+                        {erreurs.typeVoie && <p className='text-danger'>{erreurs.typeVoie}</p>}
                     </Form.Group>
                 </Col>
             </Row>
@@ -62,33 +87,37 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         <Form.Label className="mb-3">{t('odonyme')}</Form.Label>
                         <Form.Control 
                             type="text" 
-                            value={odonyme} 
-                            onChange={(e) => setOdonyme(e.target.value)} 
+                            value={adresse.odonyme} 
+                            onChange={(e) => adresse.setOdonyme(e.target.value)} 
                         />
+                        {erreurs.odonyme && <p className='text-danger'>{erreurs.odonyme}</p>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="mb-3">{t('nomMunicipalite')}</Form.Label>
                         <Form.Control 
                             type="text" 
-                            value={nomMunicipalite} 
-                            onChange={(e) => setNomMunicipalite(e.target.value)} 
+                            value={adresse.nomMunicipalite} 
+                            onChange={(e) => adresse.setNomMunicipalite(e.target.value)} 
                         />
+                        {erreurs.nomMunicipalite && <p className='text-danger'>{erreurs.nomMunicipalite}</p>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="mb-3">{t('etat')}</Form.Label>
                         <Form.Control 
                             type="text" 
-                            value={etat} 
-                            onChange={(e) => setEtat(e.target.value)} 
+                            value={adresse.etat} 
+                            onChange={(e) => adresse.setEtat(e.target.value)} 
                         />
+                        {erreurs.etat && <p className='text-danger'>{erreurs.etat}</p>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="mb-3">{t('pays')}</Form.Label>
                         <Form.Control 
                             type="text" 
-                            value={pays} 
-                            onChange={(e) => setPays(e.target.value)} 
+                            value={adresse.pays} 
+                            onChange={(e) => adresse.setPays(e.target.value)} 
                         />
+                        {erreurs.pays && <p className='text-danger'>{erreurs.pays}</p>}
                     </Form.Group>
                 </Col>
             </Row>
@@ -98,11 +127,12 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         <Form.Label className="mb-3">{t('codePostal')}</Form.Label>
                         <Form.Control 
                             type="text" 
-                            value={codePostal} 
-                            onChange={(e) => setCodePostal(e.target.value)} 
+                            value={adresse.codePostal} 
+                            onChange={(e) => adresse.setCodePostal(e.target.value)} 
                         />
+                        {erreurs.codePostal && <p className='text-danger'>{erreurs.codePostal}</p>}
                     </Form.Group>
-                    <Button className='mt-3' variant='success' onClick={handleSubmit}>{nomBouton}</Button>
+                    <Button className='mt-3' variant='success' onClick={handleSubmit}>{t(nomBouton)}</Button>
                 </Col>
             </Row>
         </>

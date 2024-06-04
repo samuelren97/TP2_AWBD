@@ -50,5 +50,13 @@
     "messageConfirmationSuppression": "Client was deleted successfully",
     "erreurNom": "You must enter a last name between 2 and 50 characters.",
     "erreurPrenom": "You must enter a first name between 2 and 50 characters.",
-    "erreurDateNaissance": "You must enter a valid birth date."
+    "erreurDateNaissance": "You must enter a valid birth date.",
+    "erreurNumeroCivique": "You must enter a civic number between 1 and 10 numbers.",
+    "erreurOdonyme": "You must enter a street name between 2 and 50 characters.",
+    "erreurTypeVoie": "You must enter a street type between 2 and 50 characters.",
+    "erreurCodePostal": "You must enter a valid postal code.",
+    "erreurNomMunicipalite": "You must enter a municipality name between 2 and 50 characters.",
+    "erreurEtat": "You must enter a state between 2 and 50 characters.",
+    "erreurPays": "You must enter a country between 2 and 50 characters.",
+    "modificationAdresse": "Address modification"
 }
