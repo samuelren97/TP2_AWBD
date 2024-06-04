@@ -38,7 +38,6 @@ const handleCheckFiltre = (nomFiltre, filtres, setFiltres) => {
         nouvFiltres.push(nomFiltre);
     }
 
-    console.log(nouvFiltres);
     setFiltres(nouvFiltres);
 };
 
@@ -51,6 +50,31 @@ function PageClients() {
     const [ filtresMunicipalites, setFiltresMunicipalites ] = useState([]);
     const [ filtresEtats, setFiltresEtats ] = useState([]);
     const [ filtresPays, setFiltresPays ] = useState([]);
+
+    const filtrerClients = () => {
+        if (filtresMunicipalites.length == 0 && 
+            filtresEtats.length == 0 &&
+            filtresPays.length == 0) 
+        {
+            return clients;
+        }
+
+        return clients.reduce((nouvClients, client) => {
+            let aEteRajoute = false
+            client.adresses.forEach(adresse => {
+                if (!aEteRajoute && 
+                    (filtresMunicipalites.includes(adresse.nomMunicipalite) ||
+                    filtresEtats.includes(adresse.etat) ||
+                    filtresPays.includes(adresse.pays))) 
+                {
+                    nouvClients.push(client);
+                    aEteRajoute = true;
+                }
+            });
+
+            return nouvClients;
+        }, []);
+    }
 
     useEffect(() => {
         const requeteClients = async () => {
@@ -77,7 +101,7 @@ function PageClients() {
         requeteClients();
     }, []);
 
-    let titreAucunClient = (
+    const titreAucunClient = (
         <div className='text-center'>
             <h3>
                 Aucun client pour le moment...
@@ -85,6 +109,8 @@ function PageClients() {
             </h3>
         </div>
     );
+
+    const clientsAAfficher = filtrerClients();
     
     return (
         <Row>
@@ -104,9 +130,9 @@ function PageClients() {
             <Col xs={12} md={10}>
                 <Row>
                     {
-                        clients.length > 0 
+                        clientsAAfficher.length > 0 
                             ? 
-                                clients.map(client => {
+                                clientsAAfficher.map(client => {
                                     return <ItemClient key={client.clientId} client={client} />
                                 }) 
                             : 
