@@ -5,24 +5,20 @@ import { Form } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 
 export function FormulaireClient({ handleClick, nomBouton, nom, prenom, dateNaissance, setNom, setPrenom, setDateNaissance}) {
-    
-
-
     const [erreurs, setErreurs] = useState({});
     const { t } = useTranslation();
 
     const handleSubmit = () => {
-        if (!validerChampsClient()) {
-            return;
+        if (validerChampsClient()) {
+            handleClick({
+                nom: nom,
+                prenom: prenom,
+                dateNaissance: dateNaissance
+            });
+            setNom('');
+            setPrenom('');
+            setDateNaissance('');
         }
-        handleClick({
-            nom: nom,
-            prenom: prenom,
-            dateNaissance: dateNaissance
-        });
-        setNom('');
-        setPrenom('');
-        setDateNaissance('');
     }
 
     const validerChampsClient = () => {
