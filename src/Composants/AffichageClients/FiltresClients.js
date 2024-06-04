@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 function FiltresClients({
     municipalites,
@@ -13,9 +14,11 @@ function FiltresClients({
     checkEtat,
     checkPays
 }) {
+    const { t } = useTranslation();
+
     return (
         <>
-        <h5>Municipalités</h5>
+        <h5>{t('municipalites')}</h5>
         <hr />
         {
             municipalites.map(municipalite => {
@@ -29,7 +32,7 @@ function FiltresClients({
             })
         }
 
-        <h5 className='mt-5'>États</h5>
+        <h5 className='mt-5'>{t('etats')}</h5>
         <hr />
         {
             etats.map(etat => {
@@ -43,7 +46,7 @@ function FiltresClients({
             })
         }
 
-        <h5 className='mt-5'>Pays</h5>
+        <h5 className='mt-5'>{t('Pays')}</h5>
         <hr />
         {
             pays.map(paysCourant => {
