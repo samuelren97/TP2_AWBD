@@ -13,20 +13,20 @@ const obtenirAdressesUniques = (clients, champ) => {
         let aEteRajoute = false;
 
         client.adresses.forEach(adresse => {
-            const objUnique = nouvTab.find(obj => obj.nom == adresse[champ]);
+            const adresseUnique = nouvTab.find(obj => obj.nom.toLowerCase() == adresse[champ].toLowerCase());
 
-            if (objUnique) {
-                if (!aEteRajoute) {
-                    objUnique.nbClients++;
-                    aEteRajoute = true;
-                }
-            } else {
+            if (adresseUnique === undefined) {
                 nouvTab.push({
                     nom: adresse[champ],
                     nbClients: 1
                 });
-                aEteRajoute = true;
+            } else {
+                adresseUnique.nbClients = clients.filter(
+                    client => {
+                        return client.adresses.find(adresseCourant => adresseCourant[champ] === adresse[champ])
+                }).length
             }
+
         });
 
         return nouvTab;
@@ -82,6 +82,8 @@ function PageClients() {
                 }
             });
 
+            
+
             return nouvClients;
         }, []);
     }
@@ -108,6 +110,7 @@ function PageClients() {
 
             if (reponse.status == 200) {
                 const reponseJSON = await reponse.json();
+
                 setClients(reponseJSON);
 
                 const nouvMunicipalites = obtenirAdressesUniques(reponseJSON, 'nomMunicipalite');
