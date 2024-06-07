@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
 import { FormulaireClient } from '../Composants/FormulaireClient.js';
 import { ItemAdresse } from '../Composants/AffichageClients/ItemAdresse.js';
+import { BoutonRetour } from '../Composants/BoutonRetour.js';
 
 export function PageModificationClient() {
     const { idClient } = useParams();
@@ -78,7 +79,7 @@ export function PageModificationClient() {
 
     return (
         <Container className='mt-3'>
-            <h1>{t('modificationClient')}</h1>
+            <h1>{<BoutonRetour lienPrecedent={'/clients'} />} {t('modificationClient')}</h1>
             <hr />
             <FormulaireClient
                 handleClick={modifierClient}

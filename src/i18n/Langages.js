@@ -3,18 +3,20 @@ import Form from 'react-bootstrap/Form'
 import { useTranslation } from 'react-i18next';
 import { Navbar } from 'react-bootstrap';
 
-function Langages() {
+function Langages({langue, setLangue}) {
     const { i18n } = useTranslation();
+    
 
     useEffect(() => {
         const changerLanguage = async () => {
-            await i18n.changeLanguage('fr');
+            await i18n.changeLanguage(langue);
         }
         changerLanguage();
     }, [i18n]);
 
     function changerLangue(langue) {
         i18n.changeLanguage(langue);
+        setLangue(langue);
     }
 
     return  (

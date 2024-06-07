@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
+import { BoutonRetour } from '../Composants/BoutonRetour.js';
 
 export function PageModificationAdresse() {
     const { idClient, idAdresse } = useParams();
@@ -82,7 +83,7 @@ export function PageModificationAdresse() {
 
     return (
         <Container>
-            <h1>{t('modificationAdresse')}</h1>
+            <h1>{<BoutonRetour lienPrecedent={'/clients'} />} {t('modificationAdresse')}</h1>
             {console.log(adresse)}
             {
                 adresse == null ?

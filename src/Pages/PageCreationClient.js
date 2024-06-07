@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-
-
-import { FormulaireClient } from '../Composants/FormulaireClient.js';
 import { useNavigate } from 'react-router-dom';
+
+import { BoutonRetour } from '../Composants/BoutonRetour.js';
+import { FormulaireClient } from '../Composants/FormulaireClient.js';
 
 export function PageCreationClient() {
     const [nom, setNom] = useState('');
@@ -40,7 +40,7 @@ export function PageCreationClient() {
 
     return (
         <Container className='mt-3'>
-            <h1>{t('ajouterClient')}</h1>
+            <h1>{<BoutonRetour lienPrecedent='/clients' />}  {t('ajouterClient')}</h1>
             <hr />
             <FormulaireClient
                 handleClick={ajouterClient}
