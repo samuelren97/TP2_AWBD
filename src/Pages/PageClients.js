@@ -8,23 +8,24 @@ import ItemClient from '../Composants/AffichageClients/ItemClient.js';
 import FiltresClients from '../Composants/AffichageClients/FiltresClients.js';
 import OptionsTriage from '../Composants/AffichageClients/OptionsTriage.js';
 
-const obtenirAdressesUniques = (clients, champ) => {
+const obtenirAdressesUniques = (clients, clef) => {
     return clients.reduce((nouvTab, client) => {
-        let aEteRajoute = false;
+        let adressesUniquesClient = [];
 
         client.adresses.forEach(adresse => {
-            const adresseUnique = nouvTab.find(obj => obj.nom.toLowerCase() == adresse[champ].toLowerCase());
+            const adresseUnique = nouvTab.find(obj => obj.nom.toLowerCase() == adresse[clef].toLowerCase());
 
             if (adresseUnique === undefined) {
                 nouvTab.push({
-                    nom: adresse[champ],
+                    nom: adresse[clef],
                     nbClients: 1
                 });
+                adressesUniquesClient.push(adresse[clef]);
             } else {
-                adresseUnique.nbClients = clients.filter(
-                    client => {
-                        return client.adresses.find(adresseCourant => adresseCourant[champ] === adresse[champ])
-                }).length
+                if (!adressesUniquesClient.includes(adresse[clef])) {
+                    adressesUniquesClient.push(adresse[clef]);
+                    adresseUnique.nbClients++;
+                }
             }
 
         });
