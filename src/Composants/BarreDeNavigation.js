@@ -1,11 +1,13 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RiContactsLine } from 'react-icons/ri';
 
 import Langages from '../i18n/Langages.js';
 
 function BarreDeNavigation({ estAuthentifie, deconnexion }) {
+    const [langue, setLangue] = useState('fr');
     const { t } = useTranslation();
 
     let liens = (
@@ -15,13 +17,6 @@ function BarreDeNavigation({ estAuthentifie, deconnexion }) {
                 active={window.location.pathname === '/clients'}
             >
                 {t('clients')}
-            </Nav.Link>
-
-            <Nav.Link
-                href='/creationClient'
-                active={window.location.pathname === '/creationClient'}
-            >
-                {t('creerClient')}
             </Nav.Link>
 
             <Nav.Link onClick={deconnexion}>
@@ -44,7 +39,7 @@ function BarreDeNavigation({ estAuthentifie, deconnexion }) {
                     { estAuthentifie && liens}
                 </Navbar.Collapse>
                 <Navbar.Collapse className='me-4 justify-content-end'>
-                    <Langages />
+                    <Langages langue={langue} setLangue={setLangue}/>
                 </Navbar.Collapse>
         </Navbar>
     )
