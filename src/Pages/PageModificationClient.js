@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
-import { FormulaireClient } from '../Composants/FormulaireClient.js';
+import { FormulaireAdresse } from '../Composants/Formulaires/FormulaireAdresse.js';
+import { FormulaireClient } from '../Composants/Formulaires/FormulaireClient.js';
 import { ItemAdresse } from '../Composants/AffichageClients/ItemAdresse.js';
 import { BoutonRetour } from '../Composants/BoutonRetour.js';
 
@@ -90,7 +90,6 @@ export function PageModificationClient() {
                 setNom={setNom}
                 setPrenom={setPrenom}
                 setDateNaissance={setDateNaissance}
-
             />
             
             <div className='mt-3 p-3 border rounded'>
@@ -131,5 +130,3 @@ export function PageModificationClient() {
         </Container>
     )
 }
-
-

@@ -27,7 +27,6 @@ const obtenirAdressesUniques = (clients, clef) => {
                     adresseUnique.nbClients++;
                 }
             }
-
         });
 
         return nouvTab;
@@ -82,8 +81,6 @@ function PageClients() {
                     aEteRajoute = true;
                 }
             });
-
-            
 
             return nouvClients;
         }, []);

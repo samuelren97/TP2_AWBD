@@ -8,6 +8,7 @@ export function BoutonRetour({lienPrecedent}) {
   return (
     <FaRegArrowAltCircleLeft
       onClick={() => navigate(lienPrecedent)}
+      style={{ cursor: 'pointer' }}
     />
   );
 }

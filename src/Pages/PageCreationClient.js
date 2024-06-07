@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { BoutonRetour } from '../Composants/BoutonRetour.js';
-import { FormulaireClient } from '../Composants/FormulaireClient.js';
+import { FormulaireClient } from '../Composants/Formulaires/FormulaireClient.js';
 
 export function PageCreationClient() {
     const [nom, setNom] = useState('');
@@ -55,5 +55,3 @@ export function PageCreationClient() {
         </Container>
     )
 }
-
-

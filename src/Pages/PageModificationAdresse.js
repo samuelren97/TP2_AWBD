@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { FormulaireAdresse } from '../Composants/FormulaireAdresse.js';
+import { FormulaireAdresse } from '../Composants/Formulaires/FormulaireAdresse.js';
 import { BoutonRetour } from '../Composants/BoutonRetour.js';
 
 export function PageModificationAdresse() {
@@ -62,7 +62,7 @@ export function PageModificationAdresse() {
 
 
     const modifierAdresse = async (nouvAdresse) => {
-        const response = await fetch(`/api/clients/${idClient}/adresses/${idAdresse}`, {
+        await fetch(`/api/clients/${idClient}/adresses/${idAdresse}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
