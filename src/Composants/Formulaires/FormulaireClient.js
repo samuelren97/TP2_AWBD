@@ -51,7 +51,7 @@ export function FormulaireClient({ handleClick, nomBouton, nom, prenom, dateNais
                         {erreurs.nom && <p className='text-danger'>{erreurs.nom}</p>}
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mt-2 responsive-label">{t('prenom')}</Form.Label>
+                        <Form.Label className="mt-2">{t('prenom')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={prenom} 
@@ -64,7 +64,7 @@ export function FormulaireClient({ handleClick, nomBouton, nom, prenom, dateNais
             <Row>
                 <Col xs={6} md={4}>
                     <Form.Group>
-                        <Form.Label className="mt-2 responsive-label">{t('dateNaissance')}</Form.Label>
+                        <Form.Label className="mt-2">{t('dateNaissance')}</Form.Label>
                         <Form.Control 
                             type="date" 
                             value={dateNaissance} 

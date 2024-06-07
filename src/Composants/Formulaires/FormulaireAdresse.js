@@ -62,7 +62,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
             <Row>
                 <Col xs={6} md={2}>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('numeroCivique')}</Form.Label>
+                        <Form.Label className="mb-1">{t('numeroCivique')}</Form.Label>
                         <Form.Control 
                             type="text"     
                             value={adresse.numeroCivique} 
@@ -71,7 +71,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         {erreurs.numeroCivique && <p className='text-danger'>{erreurs.numeroCivique}</p>}
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('typeVoie')}</Form.Label>
+                        <Form.Label className="mt-2">{t('typeVoie')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={adresse.typeVoie} 
@@ -84,7 +84,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
             <Row>
                 <Col xs={12} md={6}>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('odonyme')}</Form.Label>
+                        <Form.Label className="mt-2">{t('odonyme')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={adresse.odonyme} 
@@ -93,7 +93,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         {erreurs.odonyme && <p className='text-danger'>{erreurs.odonyme}</p>}
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('nomMunicipalite')}</Form.Label>
+                        <Form.Label className="mt-2">{t('nomMunicipalite')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={adresse.nomMunicipalite} 
@@ -102,7 +102,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         {erreurs.nomMunicipalite && <p className='text-danger'>{erreurs.nomMunicipalite}</p>}
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('etat')}</Form.Label>
+                        <Form.Label className="mt-2">{t('etat')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={adresse.etat} 
@@ -111,7 +111,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         {erreurs.etat && <p className='text-danger'>{erreurs.etat}</p>}
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('pays')}</Form.Label>
+                        <Form.Label className="mt-2">{t('pays')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={adresse.pays} 
@@ -124,7 +124,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
             <Row>
                 <Col xs={6} md={2}>
                     <Form.Group>
-                        <Form.Label className="mb-3">{t('codePostal')}</Form.Label>
+                        <Form.Label className="mt-2">{t('codePostal')}</Form.Label>
                         <Form.Control 
                             type="text" 
                             value={adresse.codePostal} 
@@ -132,7 +132,7 @@ export function FormulaireAdresse({ handleClick, nomBouton, adresse }) {
                         />
                         {erreurs.codePostal && <p className='text-danger'>{erreurs.codePostal}</p>}
                     </Form.Group>
-                    <Button className='mt-3' variant='success' onClick={handleSubmit}>{t(nomBouton)}</Button>
+                    <Button className='mt-3' data-testid='btnEnvoyer' variant='success' onClick={handleSubmit}>{t(nomBouton)}</Button>
                 </Col>
             </Row>
         </>
